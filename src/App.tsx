@@ -1,6 +1,7 @@
 import { useState } from "react";
+import AuthInput from "./components/Input/AuthInput";
 import DashboardButton from "./components/buttons/DashboardButton";
-import DashboardInput from "./components/buttons/DashboardInput";
+import DashboardInput from "./components/Input/DashboardInput";
 import Modal from "./components/Modal";
 
 function App() {
@@ -12,6 +13,13 @@ function App() {
         <div className="w-[30vw] h-[30vh]">hello</div>
       </Modal>
       <DashboardButton text="Add a Dog" />
+      <AuthInput
+        text="Name"
+        placeholder="Enter Name"
+        type="text"
+        value={""}
+        name={"name"}
+      />
       <DashboardInput
         text="Name"
         placeholder="Enter Name"
