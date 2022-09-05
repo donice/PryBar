@@ -10,6 +10,7 @@ import WebsiteLayout from "./layouts/WebsiteLayout";
 import Dashboard from "./pages/Dashboard";
 import PostedDogs from "./pages/Dashboard/PostedDogs";
 import MyProfile from "./pages/Dashboard/MyProfile";
+import AddDog from "./pages/Dashboard/AddDog";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -35,6 +36,7 @@ function App() {
             <Route path="/dashboard/overview" element={<Dashboard />} />
             <Route path="/dashboard/posted-dogs" element={<PostedDogs />} />
             <Route path="/dashboard/profile" element={<MyProfile />} />
+            <Route path="/dashboard/add-dog" element={<AddDog />} />
           </Route>
 
           <Route element={<WebsiteLayout />}>
