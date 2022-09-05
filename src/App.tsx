@@ -8,13 +8,15 @@ import AuthLayout from "./layouts/AuthLayout";
 import DashboardLayout from "./layouts/DashboardLayout";
 import WebsiteLayout from "./layouts/WebsiteLayout";
 import Dashboard from "./pages/Dashboard";
+import PostedDogs from "./pages/Dashboard/PostedDogs";
+import MyProfile from "./pages/Dashboard/MyProfile";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <BrowserRouter>
-      <div className="App font-primary">
+      <div className="font-primary  transition ease-in-out duration-550">
         <Routes>
           <Route element={<AuthLayout />}>
             {/* <Route path="/auth/login" element={<Login />} />
@@ -30,7 +32,9 @@ function App() {
           </Route>
 
           <Route element={<DashboardLayout />}>
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard/overview" element={<Dashboard />} />
+            <Route path="/dashboard/posted-dogs" element={<PostedDogs />} />
+            <Route path="/dashboard/profile" element={<MyProfile />} />
           </Route>
 
           <Route element={<WebsiteLayout />}>

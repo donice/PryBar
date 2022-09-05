@@ -5,22 +5,22 @@ import { MdPerson, MdAmpStories  } from "react-icons/md";
 import { FaSignOutAlt  } from "react-icons/fa";
 
 const links = [
-  { id: 1, name: "Dashboard", icon: BsFillGridFill, path: "/dashboard" },
-  { id: 2, name: "My Profile", icon: MdPerson, path: "/profile" },
-  { id: 3, name: "Posted Dogs", icon: MdAmpStories, path: "/posted-dogs" },
+  { id: 1, name: "Dashboard", icon: BsFillGridFill, path: "/dashboard/overview" },
+  { id: 2, name: "My Profile", icon: MdPerson, path: "/dashboard/profile" },
+  { id: 3, name: "Posted Dogs", icon: MdAmpStories, path: "/dashboard/posted-dogs" },
   // { id: 4, name: "Dashboard", icon: FaSignOutAlt, path: "http://" },
 ];
 
 const Sidebar = () => {
   return (
-    <div className="w-[250px] min-h-[100vh] overflow-y-scroll">
-      <div className="w-[80%] mx-auto">
+    <div className="w-[250px] min-h-[100vh] overflow-y-scroll shadow-primary">
+      <div className="w-[80%] mx-auto pt-[4em]">
         <div>
           <img src="" alt="" />
         </div>
-        <p>JOHN DOE</p>
+        <p className="text-center text-large font-semibold text-grey">JOHN DOE</p>
 
-        <div>
+        <div className="pt-[3em]">
         {links.map((link) => {
             return (
               <NavLink
@@ -28,7 +28,7 @@ const Sidebar = () => {
                 to={link.path}
                 className={(navData) =>
                   navData.isActive
-                    ? "text-brown text-primary bg-active  flex  items-center rounded-primary my-1 px-4 py-[10px]"
+                    ? "text-brown text-primary bg-active  flex  items-center rounded-primary my-1 px-4 py-[10px] shadow-activeShadow"
                     : "flex text-primary text-grey  items-center rounded my-1 px-4 py-[10px]"
                 }
               >

@@ -20,7 +20,7 @@ module.exports = {
       fontSize: {
         primary: "14px",
         secondary: "16px",
-        large: "24px",
+        large: "20px",
       },
       fontFamily : {
         primary: ["'DM Sans'", "sans-serif"]

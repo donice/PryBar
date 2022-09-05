@@ -5,8 +5,10 @@ import Sidebar from "../components/Sidebar";
 const DashboardLayout = () => {
   return (
     <div className="flex">
-      <Sidebar/>
-      <Outlet />
+      <Sidebar />
+      <div className="w-[calc(100vw-250px)] p-[2em]">
+        <Outlet />
+      </div>
     </div>
   );
 };
