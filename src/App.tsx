@@ -11,6 +11,7 @@ import Dashboard from "./pages/Dashboard";
 import PostedDogs from "./pages/Dashboard/PostedDogs";
 import MyProfile from "./pages/Dashboard/MyProfile";
 import AddDog from "./pages/Dashboard/AddDog";
+import OneDog from "./pages/Dashboard/OneDog";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -37,6 +38,7 @@ function App() {
             <Route path="/dashboard/posted-dogs" element={<PostedDogs />} />
             <Route path="/dashboard/profile" element={<MyProfile />} />
             <Route path="/dashboard/add-dog" element={<AddDog />} />
+            <Route path="/dashboard/posted-dogs/:id" element={<OneDog />} />
           </Route>
 
           <Route element={<WebsiteLayout />}>

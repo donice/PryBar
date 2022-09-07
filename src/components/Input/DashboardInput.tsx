@@ -22,7 +22,7 @@ const DashboardInput = ({
   name,
 }: Props) => {
   return (
-    <div className="text-primary flex flex-col">
+    <div className="text-primary flex flex-col w-[100%]">
       <label htmlFor={name} className="text-grey">{text}</label>
       <input
         type={type}

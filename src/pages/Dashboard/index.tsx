@@ -1,5 +1,6 @@
 import React from "react";
 import DashboardButton from "../../components/buttons/DashboardButton";
+import DogCard from "../../components/DogCard";
 import DashboardInput from "../../components/Input/DashboardInput";
 import SidebarHeader from "../../components/SidebarHeader";
 
@@ -9,7 +10,7 @@ const Dashboard = () => {
       <SidebarHeader title="DASHBOARD" />
       <div>
         <div className="w-[300px]">
-         <p className="text-primary">Search all dogs registered.</p>
+          <p className="text-primary">Search all dogs registered.</p>
           <DashboardInput
             text={""}
             type={""}
@@ -18,6 +19,16 @@ const Dashboard = () => {
             name={""}
           />
         </div>
+      </div>
+
+      <div className="grid grid-cols-3 mt-4 gap-8">
+        <DogCard />
+        <DogCard />
+        <DogCard />
+
+        <DogCard />
+        <DogCard />
+        <DogCard />
       </div>
     </div>
   );
