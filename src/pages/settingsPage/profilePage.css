@@ -102,19 +102,17 @@ label {
 .field {
   width: 40%;
 }
-Nav {
-  display: none;
-}
+
 .settings-footer {
   position: fixed;
   bottom: 0;
   width: 100%;
-  border-top: 1px solid #9F9F9F;
+  border-top: 1px solid #9f9f9f;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  color: #9F9F9F;
+  color: #9f9f9f;
 }
 .footer_top a {
   padding: 0.5rem;
@@ -130,12 +128,9 @@ Nav {
   gap: 0.3rem;
   font-size: 13px;
 }
-footer {
-  display: none;
-}
 
 /* media queries starts here */
-@media screen and (max-width: 376px){
+@media screen and (max-width: 376px) {
   .SettingsHeader,
   .settings-footer {
     display: none;
@@ -153,7 +148,7 @@ footer {
   }
   .field {
     font-size: 12px;
-  } 
+  }
   .fullName h1 {
     font-size: 15px;
   }
@@ -269,7 +264,7 @@ footer {
   }
 }
 @media (max-width: 892px) {
-  .SettingsHeader{
+  .SettingsHeader {
     display: none;
   }
   .footer_top {
@@ -277,7 +272,7 @@ footer {
     flex-direction: column;
     align-items: center;
   }
-  .settings-footer a{
+  .settings-footer a {
     font-size: 13px;
     padding: 0.7rem;
   }
@@ -297,4 +292,3 @@ footer {
     display: none;
   }
 }
-
