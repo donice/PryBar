@@ -19,6 +19,7 @@ import ForgetPassword from "./pages/ForgetPassword/index";
 import ResetLink from "./pages/ForgetPassword/LinkReset";
 import EventInvite from "./pages/invitee/EventInvite";
 import EventInviteResponse from "./pages/invitee/EventInviteResponse";
+import Features from "./pages/Features-page/features";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
         <Route path="/forget_password" element={<ForgetPassword />} />
         <Route path="/reset_link" element={<ResetLink />} />
         <Route path="/event_invite" element={<EventInvite />} />
+        <Route path="/features" element={<Features/>}/>
         <Route
           path="/event_invite/event_invite_response"
           element={<EventInviteResponse />}
