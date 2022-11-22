@@ -19,8 +19,10 @@ import ForgetPassword from "./pages/ForgetPassword/index";
 import ResetLink from "./pages/ForgetPassword/LinkReset";
 import EventInvite from "./pages/invitee/EventInvite";
 import EventInviteResponse from "./pages/invitee/EventInviteResponse";
-import Settings from "./pages/settingsPage/profilePage"
+import Settings from "./pages/settingsPage/profilePage";
+import ContactUs from "./pages/contactUs/index"
 import Features from "./pages/Features-page/features";
+
 
 function App() {
   return (
@@ -40,6 +42,7 @@ function App() {
         <Route path="/howItWorks" element={<HowItWorks />} />
         <Route path="/faq" element={<Faq />} />
         <Route path="/terms_of_use" element={<TermsOfUse />} />
+        <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/terms" element={<Terms />} />
         <Route path="/dashboard/upcoming_events" element={<UpcomingEvent />} />
         <Route path="/forget_password" element={<ForgetPassword />} />
