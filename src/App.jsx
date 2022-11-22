@@ -19,6 +19,8 @@ import ForgetPassword from "./pages/ForgetPassword/index";
 import ResetLink from "./pages/ForgetPassword/LinkReset";
 import EventInvite from "./pages/invitee/EventInvite";
 import EventInviteResponse from "./pages/invitee/EventInviteResponse";
+import Settings from "./pages/settingsPage/profilePage"
+import Features from "./pages/Features-page/features";
 
 function App() {
   return (
@@ -28,6 +30,7 @@ function App() {
         <Route path="/create_event" element={<CreateEvent />} />
         <Route path="/closed_event" element={<ClosedEvent />} />
         <Route path="/event_summary" element={<EventSummary />} />
+        <Route path="/settings" element={<Settings />} />
         <Route path="/error404" element={<Error404 />} />
         <Route path="/invitee" element={<Invitee />} />
         <Route path="/sign_in" element={<SignIn />} />
@@ -46,6 +49,7 @@ function App() {
           path="/event_invite/event_invite_response"
           element={<EventInviteResponse />}
         />
+        <Route path="/features" element={<Features />} />
       </Routes>
     </div>
   );
