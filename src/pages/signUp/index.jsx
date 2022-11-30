@@ -176,7 +176,8 @@ const SignUp = () => {
 
             <p className='my-2.5 text-center text-[#0056D6]' >Or</p>
 
-            <a href="https://catchup.hng.tech/api/v1/auth/google/url" className='flex justify-center items-center font-medium text-[#344054] w-full  border border-[#D0D5DD] h-11 p-2 rounded-lg'>
+            <a href="https://catchup.hng.tech/api/v1/auth/google/url"
+             className='flex justify-center items-center font-medium text-[#344054] w-full  border border-[#D0D5DD] h-11 p-2 rounded-lg'>
               <img className='mr-2 w-6' src={google} alt="google logo"/>
                Sign Up with Google
             </a>
