@@ -3,20 +3,14 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { HiChevronDown } from "react-icons/hi";
 import { icons } from "react-icons";
+import Logo from "./Logo";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   return (
     <nav className="bg-white px-2 sm:px-4 py-2.5 fixed w-full z-20 top-0 left-0 border-b border-white">
       <div className="container flex flex-wrap items-center justify-between mx-auto">
-        <Link to="/" className="flex items-center">
-          <span className="self-center text-blue-700 text-3xl font-semibold whitespace-nowrap ">
-            Catch
-          </span>
-          <span className="self-center text-black text-3xl font-semibold whitespace-nowrap">
-            Up
-          </span>
-        </Link>
+        <Logo />
         <div className="flex md:order-2">
           <Link to="/sign_in" className="mr-5 mt-2 text-blue-700 font-bold">
             Log In
