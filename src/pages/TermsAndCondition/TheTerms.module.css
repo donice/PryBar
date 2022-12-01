@@ -1,0 +1,90 @@
+.termContainer {
+    display: flex;
+    justify-content: space-around;
+    margin: 7rem auto;
+    max-width: 92%;
+    gap: 2rem;
+}
+.termHead {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid blue;
+}
+.sideBar {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    height: fit-content;
+}
+.sideBarTitle,
+.termOfUseText {
+    font-size: 25px;
+    font-weight: 700;
+}
+.textTitles {
+    font-size: 20px;
+    font-weight: 400;
+    display: block;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.TermsOfUse{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+.allLinks {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+.allLinks a{
+    margin-top: 1rem;
+    width: fit-content;
+}
+.allLinks a:hover,
+.allLinks a:focus{
+    color: rgb(0, 162, 255);
+}
+.catchUpEmail {
+    color: blue;
+}
+.termAndCondition {
+    display: flex;
+    flex-direction: column;
+    max-width: 50%;
+}
+.dontDisplay {
+    display: none;
+}
+@media (max-width: 632px) {
+    .dontDisplay {
+        display: flex;
+        flex-direction: column;
+    }
+    .termContainer {
+        flex-direction: column;
+    }
+    .TermsOfUse {
+        order: 1;
+        display: none;
+    }
+    .sideBar {
+        order: 2;
+    }
+    .termAndCondition {
+        order: 3;
+    }
+    .termContainer {
+        margin: 0.7rem;
+        flex-direction: column;
+    }
+    .termAndCondition {
+        max-width: 100%;
+    }
+}
+@media (max-width: 782px)  {
+    .termContainer {
+        margin:  5rem auto;
+    }
+}

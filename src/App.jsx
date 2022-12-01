@@ -16,7 +16,7 @@ import ResetPassword from "./pages/ForgetPassword/ResetPassword";
 import Policy from "./pages/policy";
 import Error404 from "./pages/error404";
 import HowItWorks from "./pages/howItWorks/HowItWorks";
-import Terms from "./pages/t&c";
+import Terms from  "./pages/TermsAndCondition/TheTerms"
 import TermsOfUse from "./pages/termsOfUse";
 import Faq from "./pages/FAQ/Faq";
 import Settings from "./pages/settingsPage/profilePage";
@@ -48,7 +48,9 @@ function App() {
         <Route path="/howItWorks" element={<HowItWorks />} />
         <Route path="/faq" element={<Faq />} />
         <Route path="/terms-of-use" element={<TermsOfUse />} />
-        <Route path="/terms" element={<Terms />} />
+
+        <Route path="terms" element={<Terms />} />
+        <Route path="/event_invite" element={<EventInvite />} />
         <Route path="/event_summary" element={<EventSummary />} />
         <Route
           path="/event_invite/event_invite_response"
@@ -60,9 +62,9 @@ function App() {
         <Route path="/forgot_password" element={<ForgetPassword />} />
         <Route path="/reset_link" element={<ResetLink />} />
         <Route path="/reset_password" element={<ResetPassword />} />
-        <Route path="*" element={<Error404 />} />
         <Route path="/help/*" element={<HelpRoutes />} />
         <Route path="/aboutUs" element={<AboutUsPage />} />
+        <Route path="*" element={<Error404 />} />
       </Routes>
     </div>
   );
