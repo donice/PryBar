@@ -1,14 +1,16 @@
-import React,{useState}  from "react";
-import {FaBars,FaTimes} from "react-icons/fa"
+import React, { useState } from "react";
+import { FaBars, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { HiChevronDown} from "react-icons/hi";
+import { HiChevronDown } from "react-icons/hi";
 import { icons } from "react-icons";
+import Logo from "./Logo";
 
 const Navbar = () => {
-  const [nav, setNav] = useState(false)
+  const [nav, setNav] = useState(false);
   return (
     <nav className="bg-white px-2 sm:px-4 py-2.5 fixed w-full z-20 top-0 left-0 border-b border-white">
       <div className="container flex flex-wrap items-center justify-between mx-auto">
+ FEC-59/mobile-navbar
         <Link to="/" className="flex items-center">
           <span className="self-center text-blue-700 text-3xl font-semibold whitespace-nowrap ">
             Catch
@@ -18,6 +20,22 @@ const Navbar = () => {
           </span>
         </Link>
         
+
+        <Logo />
+        <div className="flex md:order-2">
+          <Link to="/sign_in" className="mr-5 mt-2 text-blue-700 font-bold">
+            Log In
+          </Link>
+
+          <Link to="/sign_up">
+            <button
+              type="button"
+              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              Sign up
+            </button>
+          </Link>
+ main
           {/*<button
             data-collapse-toggle="navbar-sticky"
             type="button"
@@ -104,8 +122,8 @@ const Navbar = () => {
               </Link>
             </li>
           </ul>
-         
         </div>
+ FEC-59/mobile-navbar
         <div className="md:hidden flex-col"> 
         <div className="cursor-pointer pr-4 z-100 text-gray-800 " onClick={() => setNav(!nav)}  >
             {nav ? <FaTimes size={20}  /> : <FaBars size={30} />}
@@ -134,6 +152,31 @@ const Navbar = () => {
      <p>Company</p> 
 <HiChevronDown/>
       {/*<svg
+
+        <div className="md:hidden">
+          <div
+            className="cursor-pointer pr-4 z-100 text-gray-800 "
+            onClick={() => setNav(!nav)}
+          >
+            {nav ? <FaTimes size={20} /> : <FaBars size={30} />}
+          </div>
+          {nav && (
+            <ul className="flex flex-col p-4 items-center justify-center  text-white md:hidden bg-blue-700 absolute top-10 right-0 w-60 h-150  ">
+              <li>
+                <Link to="/howItWorks">How it works</Link>
+              </li>
+              <li>
+                <Link to="/error404">Blog</Link>
+              </li>
+              <li>
+                <Link
+                  to="/error404"
+                  className="flex flex-row items-center justify-center space-x-1"
+                >
+                  <p>Company</p>
+                  <HiChevronDown />
+                  {/*<svg
+ main
         className="w-5 h-5 ml-1"
         fill="currentColor"
         viewBox="0 0 20 20"
@@ -145,6 +188,7 @@ const Navbar = () => {
           clipRule="evenodd"
         ></path>
           </svg>*/}
+ FEC-59/mobile-navbar
     </Link>
   </li>
   <li>
@@ -167,8 +211,18 @@ const Navbar = () => {
 </ul>
 
           </div>
+
+                </Link>
+              </li>
+              <li>
+                <Link fro-17-features-page to="/features">
+                  Features
+                </Link>
+              </li>
+            </ul>
+ main
           )}
-          </div>
+        </div>
       </div>
     </nav>
   );
