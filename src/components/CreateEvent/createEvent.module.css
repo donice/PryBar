@@ -26,7 +26,6 @@
   padding: 1rem;
 }
 .theCreateEventContainerLinks {
-  /* display: none; */
   flex-direction: column;
   align-items: flex-start;
   padding: 1rem;
