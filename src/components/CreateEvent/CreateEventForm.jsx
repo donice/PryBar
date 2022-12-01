@@ -53,7 +53,6 @@ const CreateEventForm = () => {
 
   const submitForm = async (data) => {
     const result = await userServices.createEvents(data);
-    console.log(result);
     if (result.status === "success") {
       navigate("/event_summary");
     }
