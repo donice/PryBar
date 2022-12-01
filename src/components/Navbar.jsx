@@ -17,15 +17,7 @@ const Navbar = () => {
             Up
           </span>
         </Link>
-        <div className="flex md:order-2">
-          <Link to="/sign_up">
-            <button
-              type="button"
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              Sign up
-            </button>
-          </Link>
+        
           {/*<button
             data-collapse-toggle="navbar-sticky"
             type="button"
@@ -48,11 +40,21 @@ const Navbar = () => {
               ></path>
             </svg>
   </button>*/}
-        </div>
+        
         <div
           className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
           id="navbar-sticky"
         >
+          <div className=" md:order-2">
+          <Link to="/sign_up">
+            <button
+              type="button"
+              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              Sign up
+            </button>
+          </Link>
+          </div>
           <ul className="flex flex-col p-4 mt-4 border border-white rounded-lg bg-white md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white ">
             <li>
               <Link
@@ -104,13 +106,14 @@ const Navbar = () => {
           </ul>
          
         </div>
-        <div className="md:hidden"> 
+        <div className="md:hidden flex-col"> 
         <div className="cursor-pointer pr-4 z-100 text-gray-800 " onClick={() => setNav(!nav)}  >
             {nav ? <FaTimes size={20}  /> : <FaBars size={30} />}
 
           </div>
           {nav && (
-  <ul className="flex flex-col p-4 items-center justify-center  text-white md:hidden bg-blue-700 absolute top-10 right-0 w-60 h-150  ">
+            <div className="md:hidden ">
+  <ul className="flex flex-col space-y-4 text-sm p-4 items-start justify-start transition duration-300 ease-in-out  text-white  bg-blue-800 rounded absolute top-16 right-0 w-full h-52  ">
   <li>
     <Link
       to="/howItWorks">
@@ -153,7 +156,17 @@ const Navbar = () => {
       Features
     </Link>
   </li>
+  <li className="text-blue-700 cursor-pointer bg-white px-8 rounded py-2 text-center"><Link to="/sign_up">
+            <button
+              type="button"
+              
+            >
+              Sign up
+            </button>
+          </Link></li>
 </ul>
+
+          </div>
           )}
           </div>
       </div>
