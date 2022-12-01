@@ -3,6 +3,7 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { HiChevronDown } from "react-icons/hi";
 import { icons } from "react-icons";
+import Logo from "./Logo";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
