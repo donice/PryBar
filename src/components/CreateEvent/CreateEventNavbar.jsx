@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Logo from "../Logo";
 import googleCalendar from "../../assets/img/g-calendar.svg";
 import bell from "../../assets/img/notification.png";
-import { SlArrowDown } from "react-icons/sl";
+import { SlArrowDown, SlArrowUp } from "react-icons/sl";
 import { HiOutlineMenu } from "react-icons/hi";
 import { FaTimes } from "react-icons/fa";
 import menuStyles from "./createEvent.module.css";
