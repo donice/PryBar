@@ -1,11 +1,11 @@
-import React,{useState}  from "react";
-import {FaBars,FaTimes} from "react-icons/fa"
+import React, { useState } from "react";
+import { FaBars, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { HiChevronDown} from "react-icons/hi";
+import { HiChevronDown } from "react-icons/hi";
 import { icons } from "react-icons";
 
 const Navbar = () => {
-  const [nav, setNav] = useState(false)
+  const [nav, setNav] = useState(false);
   return (
     <nav className="bg-white px-2 sm:px-4 py-2.5 fixed w-full z-20 top-0 left-0 border-b border-white">
       <div className="container flex flex-wrap items-center justify-between mx-auto">
@@ -18,10 +18,10 @@ const Navbar = () => {
           </span>
         </Link>
         <div className="flex md:order-2">
-        <Link to="/sign_in" className="mr-5 mt-2 text-blue-700 font-bold">
+          <Link to="/sign_in" className="mr-5 mt-2 text-blue-700 font-bold">
             Log In
           </Link>
-  
+
           <Link to="/sign_up">
             <button
               type="button"
@@ -106,35 +106,30 @@ const Navbar = () => {
               </Link>
             </li>
           </ul>
-         
         </div>
-        <div className="md:hidden"> 
-        <div className="cursor-pointer pr-4 z-100 text-gray-800 " onClick={() => setNav(!nav)}  >
-            {nav ? <FaTimes size={20}  /> : <FaBars size={30} />}
-
+        <div className="md:hidden">
+          <div
+            className="cursor-pointer pr-4 z-100 text-gray-800 "
+            onClick={() => setNav(!nav)}
+          >
+            {nav ? <FaTimes size={20} /> : <FaBars size={30} />}
           </div>
           {nav && (
-  <ul className="flex flex-col p-4 items-center justify-center  text-white md:hidden bg-blue-700 absolute top-10 right-0 w-60 h-150  ">
-  <li>
-    <Link
-      to="/howItWorks">
-      
-      How it works
-    </Link>
-  </li>
-  <li>
-    <Link
-      to="/error404"
-      
-    >
-      Blog
-    </Link>
-  </li>
-  <li>
-    <Link to="/error404" className="flex flex-row items-center justify-center space-x-1">
-     <p>Company</p> 
-<HiChevronDown/>
-      {/*<svg
+            <ul className="flex flex-col p-4 items-center justify-center  text-white md:hidden bg-blue-700 absolute top-10 right-0 w-60 h-150  ">
+              <li>
+                <Link to="/howItWorks">How it works</Link>
+              </li>
+              <li>
+                <Link to="/error404">Blog</Link>
+              </li>
+              <li>
+                <Link
+                  to="/error404"
+                  className="flex flex-row items-center justify-center space-x-1"
+                >
+                  <p>Company</p>
+                  <HiChevronDown />
+                  {/*<svg
         className="w-5 h-5 ml-1"
         fill="currentColor"
         viewBox="0 0 20 20"
@@ -146,20 +141,16 @@ const Navbar = () => {
           clipRule="evenodd"
         ></path>
           </svg>*/}
-    </Link>
-  </li>
-  <li>
-    <Link
-      fro-17-features-page
-      to="/features"
-      
-    >
-      Features
-    </Link>
-  </li>
-</ul>
+                </Link>
+              </li>
+              <li>
+                <Link fro-17-features-page to="/features">
+                  Features
+                </Link>
+              </li>
+            </ul>
           )}
-          </div>
+        </div>
       </div>
     </nav>
   );
