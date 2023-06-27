@@ -1,77 +1,253 @@
-import React, { useState } from "react";
-import Logo from "../Logo";
-import googleCalendar from "../../assets/img/g-calendar.svg";
-import bell from "../../assets/img/notification.png";
-import { SlArrowDown } from "react-icons/sl";
-import { HiOutlineMenu } from "react-icons/hi";
-import { FaTimes } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import googleCalendar from "../../assets/icons/g-calendar.svg";
+import { MdSpaceDashboard } from "react-icons/md";
+import { FiSettings, FiLogIn } from "react-icons/fi";
 import menuStyles from "./createEvent.module.css";
 import { Link } from "react-router-dom";
+import { FaAngleDown } from 'react-icons/fa';
+import Logo from "../Logo";
+import Button from "../Button";
+import userServices from "../../services/userServices";
+import { getInitials } from "../../helpers/getInitials";
 
-const CreateEventNavbar = () => {
-  const [open, setOpen] = useState(false);
+/* global gapi */
 
-  return (
-    <div className="border border-[#E3E3E3]">
-      <div className={menuStyles.theCreateEventContainer}>
-        <Logo />
-        <div className="items-center cursor-pointer hidden md:flex" >
-          <img src={bell} alt="" className="w-[15px] h-[15px] mr-2" />
-          <div className="w-[35px] h-[35px] border border-[#66A3FF] text-[#717172] rounded-full flex justify-center items-center object-cover text-xs">
-            <span>M</span>
+const CreateEventNavbar = ({setModal}) => {
+  const [user, setUser] = useState({
+		name: '',
+    email: '',
+	});
+
+  const fetchData = async() => {
+    const data = await userServices.getUser()
+      setUser(data)
+    }
+
+  useEffect(() => {
+    fetchData();
+  }, [])
+
+	const [open, setOpen] = useState(false);
+  const [showNav, setShowNav] = useState(false);
+  const [display, setDisplay] = useState(false);
+
+  const toggleOpen = () => {
+    setOpen(!open);
+    setShowNav(false);
+  }
+
+  const hamburger = () => {
+    setShowNav(true)
+    setDisplay(!display)
+    setOpen(false)
+  }
+
+    const nav = {
+      transform: window.matchMedia("(max-width: 767px)").matches && !display ? "translateY(-150%)" : "translateY(0)"
+     }
+
+     function authenticate() {
+      return gapi.auth2
+        .getAuthInstance()
+        .signIn({
+          scope:
+            "https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.readonly",
+          plugin_name: "dinnerwithfriends",
+        })
+        .then(
+          function () {
+            console.log("Sign-in successful");
+          },
+          function (err) {
+            console.error("Error signing in", err);
+          }
+        );
+    }
+
+    function loadClient() {
+      gapi.client.setApiKey("AIzaSyA7G2ANAJI6rm_DpTW84lsKUJT-c8bmirI");
+      return gapi.client
+        .load("https://content.googleapis.com/discovery/v1/apis/calendar/v3/rest")
+        .then(
+          function () {
+            console.log("GAPI client loaded for API");
+            execute();
+          },
+          function (err) {
+            console.error("Error loading GAPI client for API", err);
+          }
+        );
+    }
+    // Make sure the client is loaded and sign-in is complete before calling this method.
+    function execute() {
+      return gapi.client.calendar.calendarList.list({}).then(
+        function (response) {
+          // Handle the results here (response.result has the parsed body).
+          console.log("Response", response);
+
+          if (response.status === 200) {
+            setModal(true);
+          }
+        },
+        function (err) {
+          console.error("Execute error", err);
+        }
+      );
+    }
+    gapi.load("client:auth2", function () {
+      gapi.auth2.init({
+        client_id:
+        "102076896830-4il8ncmrd6qfoippk2ut4uujb8cci54v.apps.googleusercontent.com",
+      });
+    });
+
+    const googleCalenderApi = async () => {
+      await authenticate().then(loadClient);
+    };
+
+	return (
+		<nav
+			className={`transition ease-in duration-400 bg-white md:px-10 px-2.5 md:h-[85px] md:pb-2 fixed w-full z-20 top-0 left-0 border-b border-white ${
+				display ? "h-[300px]" : "h-[59px]"
+			}`}>
+			<div className='h-[45px] md:h-[76px] py-4 md:py-0 bg-transparent container flex flex-wrap items-center justify-between mx-auto'>
+				<Logo />
+				<div className='flex md:order-2'>
+					<div onClick={toggleOpen} className='hidden md:flex items-center gap-[5px] cursor-pointer'>
+						<span>
+              <FaAngleDown className="text-[#0056d6]"/>
+						</span>
+						<span className='w-[35px] h-[35px] p-[10px] flex justify-center items-center bg-[#0056D6] rounded-[100%]'>
+              <h2 className="text-[#fff] text-[20px] font-bold text-center">{getInitials(user?.name)}</h2>
+						</span>
+					</div>
+					<div
+						onClick={hamburger}
+						className=' z-[100] w-[30px] h-[30px] px-1 py-1 text-gray-500 rounded-lg md:hidden cursor-pointer'>
+						<div
+							style={{
+								transform: display
+									? "translateY(5.5px) rotate(45deg)"
+									: "rotate(0)",
+							}}
+							className='transition ease-in duration-200 bg-black w-[20px] h-[1.5px] mt-1'></div>
+						<div
+							style={{ opacity: display ? 0 : 1 }}
+							className='transition ease-in duration-200 bg-black w-[20px] h-[1.5px] mt-1'></div>
+						<div
+							style={{
+								transform: display
+									? "translateY(-5.5px) rotate(-45deg)"
+									: "rotate(0)",
+							}}
+							className='transition ease-in duration-200 bg-black w-[20px] h-[1.5px] mt-1'></div>
+					</div>
+				</div>
+			</div>
+
+      <div class="text-left  md:block items-center">
+        {open &&
+          <div class="absolute items-center right-6 z-10 w-fit origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+            <div class={`${menuStyles.goTo} py-3 px-2`} role="none">
+              <ul className="space-y-2  ">
+                <li className="px-2 ">
+                  <MdSpaceDashboard className="mr-2.5 w-4 ml-0.5" />
+                  <Link to="/dashboard" className="block px-2 py-2 text-sm w-full">
+                    Dashboard
+                  </Link>
+                </li>
+                <li className="px-2 ">
+                  <FiSettings className="mr-2.5 w-4 ml-0.5" />
+                  <Link to="/profile" className="block px-2 py-2 text-sm w-full">
+                    Account Setting
+                  </Link>
+                </li>
+                <li className="px-2 ">
+                  <Button className="  flex items-center py-2" onClick={googleCalenderApi}>
+                    <img src={googleCalendar} alt="" className="mr-4 w-4 ml-0.5" />
+                    Sync with Google Calender
+                  </Button>
+                </li>
+                <div className="flex justify-center items-center gap-x-2 text-black rounded hover:bg-inherit hover:text-color">
+                  <span className='mr-0.5 ml-0.5 w-[30px] h-[30px] p-[4px] flex justify-center items-center bg-[#0056D6] rounded-[100%]'>
+                    <h2 className="text-[#fff] text-[20px] font-bold text-center">{getInitials(user?.name)}</h2>
+						      </span>
+                    <span className={menuStyles.theUsersName}>
+                      <span>{user?.name}</span>
+                      <span>{user?.email}</span>
+                    </span>
+                </div>
+                <li>
+                  <FiLogIn className="mr-3 w-4 ml-2.5 " />
+                  <Link to="/" className="block px-2 py-2 text-sm w-full">
+                    Log Out
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
-          <span className="ml-2 text-xs" onClick={() => setOpen(!open)}>
-            <SlArrowDown/>
-          </span>
-        </div>
-
-        <div className="flex items-center md:hidden">
-          <button className={open && menuStyles.close}>
-            <HiOutlineMenu onClick={() => setOpen(true)} />
-          </button>
-          <button className={!open && menuStyles.open}>
-            <FaTimes onClick={() => setOpen(false)} />
-          </button>
-        </div>
+        }
       </div>
+        {showNav &&
+          <div style={nav}
+          className="text-left block transition linear duration-300 items-center justify-between  w-full md:w-auto md:order-1 md:hidden"
+          id="navbar-sticky"
+        >
+          <ul  className="w-full flex flex-col p-4 mt-0 border border-white rounded-lg bg-white md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white">
+            <li>
+              <Link
+                to="/dashboard"
+                className="block py-3 md:py-2 pl-3 pr-4 text-black hover:text-white hover:bg-[#0056D6] md:hover:bg-transparent md:hover:text-blue-700 rounded md:bg-transparent md:p-0 dark:text-white"
+                aria-current="page"
+              >
+                Dashboard
+              </Link>
+            </li>
 
-      <div className="">
-        {open && (
-          <ul className={menuStyles.theCreateEventContainerLinks}>
-            <Link to="/dashboard/upcoming_events" className={menuStyles.goTo}>
-              Dashboard
-            </Link>
-            <Link to="/Upload_details" className={menuStyles.goTo}>
-              Account Setting
-            </Link>
-            <Link to="/help/*" className={menuStyles.goTo}>
-              Help and Support
-            </Link>
-            <Link to="/error404" className={menuStyles.goTo}>
-              Notification
-            </Link>
-            <Link to="/error404" className={menuStyles.syncWithGoogle}>
-              <img src={googleCalendar} alt="" />
-              Sync with Google Calender
-            </Link>
-
-            <span className={menuStyles.theUserDetail}>
-              <div className="w-[35px] h-[35px] border border-[#66A3FF] text-[#717172] rounded-full flex justify-center items-center object-cover text-xs">
-                <span>M</span>
-              </div>
-              <span className={menuStyles.theUsersName}>
-                <span>Mbulu Benita</span>
-                <span>beniottabenita@gmail.com</span>
+            <li>
+              <Link
+                fro-17-features-page
+                to="/profile"
+                dev
+                className="block py-3 md:py-2 pl-3 pr-4 text-black rounded hover:bg-[#0056D6] hover:text-white"
+              >
+                Account Settings
+              </Link>
+            </li>
+            <li>
+              <Button
+                onClick={googleCalenderApi}
+                className="flex w-full justify-start items-center pl-4 py-[10px] text-black rounded hover:bg-[#0056D6] hover:text-white"
+              >
+                <img src={googleCalendar} alt="" className="mr-2 w-4" />
+                Sync with Google Calender
+              </Button>
+            </li>
+            <li>
+              <span className="flex py-2 pl-4">
+                <span className='w-[35px] h-[35px] p-[10px] flex justify-center items-center bg-[#0056D6] rounded-[100%]'>
+                  <h2 className="text-[#fff] text-[20px] font-bold text-center">{getInitials(user?.name)}</h2>
+						    </span>
+                <span className={menuStyles.theUsersName}>
+                  <span>{user?.name}</span>
+                  <span>{user?.email}</span>
+                </span>
               </span>
-            </span>
-            <Link to="/error404" className={menuStyles.logOutBtn}>
-              <span>Log out</span>
-            </Link>
+            </li>
+            <li>
+              <Link
+                to="/"
+                dev
+                className="w-full block mt-4 py-2 pl-3 pr-4 text-center bg-white h-[44px] text-[#d60000] border-[1.5px] border-[#d60000] rounded hover:bg-red-900 hover:text-white"
+              >
+                Log Out
+              </Link>
+            </li>
           </ul>
-        )}
-      </div>
-    </div>
-  );
+        </div>
+        }
+    </nav>
+	);
 };
 
 export default CreateEventNavbar;

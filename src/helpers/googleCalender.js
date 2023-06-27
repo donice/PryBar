@@ -2,7 +2,7 @@ import userServices from "../services/userServices";
 
 export const googleCalender = async() => {
     const events = await userServices.getAllEvents()
-    const filteredEvents = events.filter((event) => event.published === false);
+    const filteredEvents = events.filter((event) => event.published === 'not-decided');
     const userEvents = filteredEvents.map(
         ({ event_title, location, event_description, final_event_date, participant_number }) => (
             {
@@ -22,8 +22,7 @@ export const googleCalender = async() => {
             }
         )
       );
-      console.log(...userEvents)
-    //   return userEvents
+      return userEvents
 }
 
 export const addToCalender = async () => {

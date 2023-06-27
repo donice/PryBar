@@ -1,29 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { MdOutlineArrowBack } from "react-icons/md";
-import { IoIosArrowDown } from "react-icons/io";
 import { BiEdit } from "react-icons/bi";
-import { AiOutlineCopyright } from "react-icons/ai";
-import avatar from "../../assets/img/Avatar.png";
-import Footer from "../../components/Footer";
-import Navbar from "../../components/Navbar";
+import {Footer} from "../../components";
 import SettingsFooter from "../../components/settingsPage/setFooter";
 import { Link } from "react-router-dom";
-
+import userServices from "../../services/userServices";
 import "./profilePage.css";
 import CreateEventNavbar from "../../components/CreateEvent/CreateEventNavbar";
+import { getInitials } from "../../helpers/getInitials";
 
-const profilePage = () => {
+const ProfilePage = () => {
+  const [user, setUser] = useState({
+    name: "",
+    email: "",
+    birthday: "",
+    gender: "",
+    mobile: "",
+  });
+
+  const fetchData = async () => {
+    const data = await userServices.getUser();
+    setUser(data);
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <div>
-      <div id="main_navbar">
-        <Navbar />
-      </div>
       <CreateEventNavbar />
 
-
-      <div className="settings_body">
+      <div className="settings_body w-[95%] md:w-[85%] mx-auto">
         <div className="body_title_container">
-          <Link to="/">
+          <Link to="/dashboard">
             <div className="body_title">
               <MdOutlineArrowBack />
               <h1>Account Settings</h1>
@@ -31,24 +40,18 @@ const profilePage = () => {
           </Link>
           <div className="body_subTitles">
             <h5>Profile</h5>
-            <span className="notification_tab">Notifications</span>
           </div>
         </div>
 
         <div className="user_details_field">
-          <div className="avatar_fullName">
-            <img src={avatar} alt="" className="avatar" />
-            <div className="fullName">
-              <h1>Femi Odeyinka</h1>
-
-              <span>femiodeyinka@examplemail.com</span>
-            </div>
+          <div className="bg-[#0056D6] rounded-full h-[85px] w-[85px] flex justify-center items-center text-4xl text-white font-semibold">
+            <h2>{getInitials(user?.name)}</h2>
           </div>
 
           <Link to="/update_details">
-            <div>
-              <button className="edit_btn">
-                <BiEdit />
+            <div className="">
+              <button className="edit_btn ">
+                <BiEdit className="mr-1" />
                 Edit
               </button>
             </div>
@@ -57,58 +60,30 @@ const profilePage = () => {
 
         <section className="more_user_details">
           <label>
-            Username/Nickname
-            <div className="field">Femi Femo</div>
+            Fullname
+            <div className="field">{user?.name}</div>
           </label>
 
           <label>
             Gender
-            <div className="field">Male</div>
+            <div className="field">{user?.gender}</div>
           </label>
 
           <label>
             Email
-            <div className="field">femiodeyinka@examplemail.com</div>
+            <div className="field">{user?.email}</div>
           </label>
 
           <label>
             Mobile
-            <div className="field">+234 801 234 5678</div>
+            <div className="field">{user?.mobile}</div>
           </label>
 
           <label>
             Birthday
-            <div className="field">25 June</div>
+            <div className="field">{user?.birthday}</div>
           </label>
         </section>
-      </div>
-      <div className="settings-footer">
-        <div className="footer_top">
-          <span>
-            <a href="/">Catch Up</a>
-            <a href="/">About Us</a>
-            <a href="/">Careers</a>
-            <a href="/">How it works</a>
-            <a href="/">Blog</a>
-            <a href="/">Privay policy</a>
-          </span>
-          <span>
-            <a href="/">Terms & Conditions</a>
-            <a href="/">Security</a>
-            <a href="/">FAQs</a>
-            <a href="/">Help Center</a>
-          </span>
-        </div>
-        <div className="footer_bottom">
-          <div className="footer_bottom_text">
-            <p>English</p>
-            <IoIosArrowDown />
-          </div>
-          <div className="footer_bottom_text">
-            <AiOutlineCopyright />
-            <p>2022 Team PryBar</p>
-          </div>
-        </div>
       </div>
       <SettingsFooter className="settings-footer" />
       <div id="main_footer">
@@ -118,4 +93,4 @@ const profilePage = () => {
   );
 };
 
-export default profilePage;
+export default ProfilePage;

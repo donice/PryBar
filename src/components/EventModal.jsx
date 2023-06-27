@@ -9,11 +9,14 @@ import { useNavigate } from "react-router";
 const EventModal = () => {
 	const { showModal, setShowModal } = CatchUpEventContextUse();
 	const navigate = useNavigate();
+
+
+
 	return (
 		<>
 			{showModal ? (
 				<>
-					<div className='flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none'>
+					<div className='flex justify-center items-center z-[1000px] overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none'>
 						<div
 							className='fixed inset-0 w-full h-full bg-black opacity-60'
 							onClick={() => setShowModal(false)}></div>
@@ -51,9 +54,9 @@ const EventModal = () => {
 														navigate("/view_event");
 													}}
 													children='Ok, Thanks!'
-													className='rounded-[4px] bg-[#1070FF] py-3 px-6 text-xs  text-white'
+													className='rounded-[4px] bg-[#0056D6] py-3 px-6 text-xs  text-white'
 												/>
-												<Button className='border border-[#1070FF] rounded-[4px] py-3 px-6 text-xs  text-[#1070FF] flex items-center'>
+												<Button className='border border-[#0056D6] rounded-[4px] py-3 px-6 text-xs  text-[#0056D6] flex items-center relative'>
 													<span className='mr-2'>
 														<BiCopy />
 													</span>

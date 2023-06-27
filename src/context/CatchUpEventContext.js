@@ -19,6 +19,7 @@ export const CatchUpEventContextProvider = ({ children }) => {
 		end_date: "",
 		host_prefered_time: "",
 	});
+	const [removedParticipants, setRemovedParticipants] = useState([])
 
 	const values = {
 		startDate,
@@ -35,7 +36,10 @@ export const CatchUpEventContextProvider = ({ children }) => {
 		setShowClosedModal,
 		setEvents,
 		events,
+		removedParticipants,
+		setRemovedParticipants
 	};
+
 
 	return (
 		<CatchUpEventContext.Provider value={values}>
